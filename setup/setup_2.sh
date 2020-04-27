@@ -9,3 +9,7 @@ source ~/py3_env/bin/activate
 #Install gpio library
 echo "\n######### Installing GPIO Python Library #########\n"
 pip3 install gpiozero
+
+
+echo "\n######### Installing GPIO Python Library 2 #########\n"
+pip3 install RPi.GPIO
