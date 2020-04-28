@@ -49,8 +49,8 @@ class DisplayImageWidget(QtWidgets.QWidget):
             return
         
 
-        packet = self.topic + ',' + m1 +',' + m2
-        self.socket.send(packet)
+        packet = self.topic + ',' + str(m1) +',' + str(m2)
+        self.socket.send_string(packet)
         
 
     def show_image(self):
