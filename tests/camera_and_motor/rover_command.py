@@ -8,29 +8,37 @@ motor_2 = Motor(forward=13, backward=20)
 
 port = "5555"
 
-# Socket to talk to server
 context = zmq.Context()
 socket = context.socket(zmq.SUB)
 
-
+#socket.connect("tcp://linuxbook.local:%s" % port)
 socket.connect("tcp://apple.local:%s" % port)
 
-topicfilter = "rover1"
+SPEED = 0.5
+
+topicfilter = 'rover1'
 socket.setsockopt_string(zmq.SUBSCRIBE, topicfilter)
+socket.RCVTIMEO = 50
 
 while True:
-    string = socket.recv_string()
-    print(string)
+    try:
+        string = socket.recv_string()
+        print(string)
+    except:
+        motor_1.stop()
+        motor_2.stop()
+        continue
+
     topic, m1, m2 = string.split(',')
 
     if int(m1)>0:
-        motor_1.forward()
+        motor_1.forward(SPEED)
     else:
-        motor_1.reverse()
+        motor_1.backward(SPEED)
 
     if int(m2)>0:
-        motor_2.forward()
+        motor_2.forward(SPEED)
     else:
-        motor_2.reverse()
+        motor_2.backward(SPEED)
 
 
