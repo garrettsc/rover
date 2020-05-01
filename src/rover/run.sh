@@ -1,3 +1,6 @@
-python rover_camera_server.py &
+#!/bin/bash
 
-python rover_command.py &
+
+source ~/py3_env/bin/activate
+python /home/pi/rover/src/rover/rover_camera_server.py &
+python /home/pi/rover/src/rover/rover_command.py &

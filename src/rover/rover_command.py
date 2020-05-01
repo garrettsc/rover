@@ -14,7 +14,7 @@ socket = context.socket(zmq.SUB)
 #socket.connect("tcp://linuxbook.local:%s" % port)
 socket.connect("tcp://apple.local:%s" % port)
 
-SPEED = 0.5
+SPEED = 0.4
 
 topicfilter = 'rover1'
 socket.setsockopt_string(zmq.SUBSCRIBE, topicfilter)
